@@ -1,0 +1,40 @@
+name: Build release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Release version"
+        required: true
+
+jobs:
+  build:
+    name: go ${{ matrix.version }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        version: [ 1.20 ]
+        os: [ macos-latest, windows-latest, ubuntu-latest]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: ${{ matrix.version }}
+
+      - name: Build
+        run: go build -o bin/ -v ./...
+
+      - name: Test
+        run: go test -v ./...
+
+      - name: Upload Distribution
+        uses: actions/upload-artifact@v3
+        with:
+          name: artifacts
+          path: |
+            bin/*
