@@ -2,26 +2,27 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
+	"net/http/httptest"
 	"strings"
 	"testing"
 )
 
 func TestEchoService(t *testing.T) {
-	fmt.Printf("Start test...")
+	t.Logf("Start test...")
 
-	res, err := http.Get("http://localhost:8080/foo/bar?query1=value1")
-	if err != nil {
-		t.Errorf("Could not make HTTP request: %v", err)
-	}
+	r := httptest.NewRequest(http.MethodPost, "https://funkyTestServer.org/foo/bar?query1=key1", nil)
+	w := httptest.NewRecorder()
+	handleRequest(w, r)
+	res := w.Result()
+
 	contentType := res.Header.Get("Content-Type")
 	if !strings.EqualFold(contentType, "application/json") {
 		t.Errorf("Invalid Contant-Type: %v", contentType)
 	}
 
 	var responseJson map[string]interface{}
-	err = json.NewDecoder(res.Body).Decode(&responseJson)
+	err := json.NewDecoder(res.Body).Decode(&responseJson)
 	if err != nil {
 		t.Error(err)
 	}
