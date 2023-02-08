@@ -35,6 +35,16 @@ jobs:
       - name: Upload Distribution
         uses: actions/upload-artifact@v3
         with:
-          name: artifacts
-          path: |
-            bin/*
+          name: artifacts-${{ matrix.os }}
+          path: bin/*
+
+
+  docker:
+    name: Build Docker Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Build Docker image
+        run: docker build . --file Dockerfile --tag Afrouper/echo-service
