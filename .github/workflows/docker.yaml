@@ -19,7 +19,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: name/app
+          images: afrouper/echo-service
 
       - name: Login to DockerHub
         if: github.event_name != 'pull_request'
