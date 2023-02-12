@@ -2,6 +2,7 @@
 
 [![Build and Test](https://github.com/afrouper/echo-service/actions/workflows/build.yml/badge.svg)](https://github.com/afrouper/echo-service/actions/workflows/build.yml)
 [![Build Release](https://github.com/afrouper/echo-service/actions/workflows/release.yaml/badge.svg)](https://github.com/afrouper/echo-service/actions/workflows/release.yaml)
+[![CodeQL](https://github.com/afrouper/echo-service/actions/workflows/codeql.yml/badge.svg)](https://github.com/afrouper/echo-service/actions/workflows/codeql.yml)
 [![](https://badgen.net/github/release/afrouper/echo-service?icon=github)](https://github.com/afrouper/echo-service/releases/latest)
 ![](https://badgen.net/github/releases/afrouper/echo-service)
 ![](https://badgen.net/github/open-issues/afrouper/echo-service)
