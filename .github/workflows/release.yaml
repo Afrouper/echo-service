@@ -6,6 +6,8 @@ on:
       version:
         description: "Release version"
         required: true
+  push:
+    branches: [ "releaseTest" ]
 
 jobs:
   build:
