@@ -47,4 +47,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: artifacts-$RUNNER_OS
-          path: bin/*.tar.gz
+          path: "*.tar.gz"
