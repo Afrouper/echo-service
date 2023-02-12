@@ -46,7 +46,7 @@ jobs:
         with:
           command: c
           cwd: bin
-          files: "*"
+          files: "echo-service*"
           outPath: echo-service-$RUNNER_OS.tar.gz
 
       - name: Upload Distribution
