@@ -32,7 +32,7 @@ jobs:
         run: go test -v ./...
 
       - name: Compress
-        uses: a7ul/tar-action@v1.1.0
+        uses: a7ul/tar-action@v1.1.2
         id: compress
         with:
           command: c
@@ -59,10 +59,17 @@ jobs:
     - name: Infos
       run: ls -al artifacts
 
-    - uses: softprops/action-gh-release@v1
+    - uses: ncipollo/release-action@v1
+      name: Create Release
       with:
-        prerelease: true
-        files: |
-          artifacts/artifacts-Linux/*.tar.gz
-          artifacts/artifacts-Windows/*.tar.gz
-          artifacts/artifacts-macOS/*.tar.gz
+        draft: true
+        makeLatest: true
+        artifacts: "artifacts/artifacts-Linux/*.tar.gz,artifacts/artifacts-macOS/*.tar.gz"
+
+#    - uses: softprops/action-gh-release@v1
+#      with:
+#        prerelease: true
+#        files: |
+#          artifacts/artifacts-Linux/*.tar.gz
+#          artifacts/artifacts-Windows/*.tar.gz
+#          artifacts/artifacts-macOS/*.tar.gz
