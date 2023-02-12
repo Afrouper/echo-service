@@ -41,10 +41,10 @@ jobs:
           command: c
           #cwd: bin
           files: bin
-          outPath: echo-service-$RUNNER_OS.tar.gz
+          outPath: echo-service-${{ RUNNER_OS }}.tar.gz
 
       - name: Upload Distribution
         uses: actions/upload-artifact@v3
         with:
-          name: artifacts-$RUNNER_OS
+          name: artifacts-${{ RUNNER_OS }}
           path: "*.tar.gz"
