@@ -34,6 +34,11 @@ jobs:
       - name: Test
         run: go test -v ./...
 
+      - name: Folder
+        run: |
+          pwd
+          ls -al
+
       - name: Compress
         uses: a7ul/tar-action@v1.1.0
         id: compress
