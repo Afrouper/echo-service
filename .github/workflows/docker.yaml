@@ -36,8 +36,8 @@ jobs:
 
       - name: Infos
         run: |
-          echo Tags: ${{ steps.meta.outputs.tags }}
-          echo Labels: ${{ steps.meta.outputs.labels }}
+          echo "Tags: ${{ steps.meta.outputs.tags }}"
+          echo "Labels: ${{ steps.meta.outputs.labels }}"
 
       - name: Build and push
         uses: docker/build-push-action@v4
@@ -45,5 +45,5 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: afrouper/echo-service:latest
           labels: ${{ steps.meta.outputs.labels }}
