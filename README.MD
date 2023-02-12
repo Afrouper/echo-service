@@ -6,6 +6,7 @@
 [![](https://badgen.net/github/release/afrouper/echo-service?icon=github)](https://github.com/afrouper/echo-service/releases/latest)
 ![](https://badgen.net/github/releases/afrouper/echo-service)
 ![](https://badgen.net/github/open-issues/afrouper/echo-service)
+![](https://badgen.net/docker/size/afrouper/echo-service/latest/amd64)
 [![](https://badgen.net/github/license/afrouper/echo-service)](https://raw.githubusercontent.com/afrouper/echo-service/main/LICENSE)
 
 Plain and very simple echo service usefully for testing infrastructure components.

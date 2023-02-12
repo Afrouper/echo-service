@@ -8,6 +8,9 @@ COPY go.mod ./
 RUN GOOS=linux go build -ldflags="-w -s" -o /go/bin/echo-service
 
 FROM scratch
+
+LABEL org.opencontainers.image.description = "Simple http echo-service"
+
 COPY --from=builder /go/bin/echo-service /echo-service
 
 EXPOSE 8080
