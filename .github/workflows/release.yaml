@@ -61,3 +61,15 @@ jobs:
 
     - name: Infos
       run: ls -al artifacts
+
+    - uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "latest"
+        prerelease: true
+        title: "Development Build"
+        files: |
+          LICENSE.txt
+          artifacts/artifacts-Linux*.tar.gz
+          artifacts/artifacts-Windows*.tar.gz
+          artifacts/artifacts-macOS*.tar.gz
