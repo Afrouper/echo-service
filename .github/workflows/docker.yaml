@@ -5,7 +5,6 @@ on:
     # Pattern matched against refs/tags
     tags:
       - '*'
-    branches: [ "workflow_tests" ]
 
 jobs:
   docker:
@@ -25,6 +24,9 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
+          tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
           images: afrouper/echo-service
 
       - name: Login to DockerHub
@@ -45,5 +47,5 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: ${{ github.event_name != 'pull_request' }}
-          tags: afrouper/echo-service:latest
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
