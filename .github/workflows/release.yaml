@@ -38,6 +38,7 @@ jobs:
         run: |
           pwd
           ls -al
+          ls -al bin/
 
       - name: Compress
         uses: a7ul/tar-action@v1.1.0
