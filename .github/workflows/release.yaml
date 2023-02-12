@@ -63,6 +63,6 @@ jobs:
       with:
         prerelease: true
         files: |
-          artifacts/artifacts-Linux*.tar.gz
-          artifacts/artifacts-Windows*.tar.gz
-          artifacts/artifacts-macOS*.tar.gz
+          artifacts/artifacts-Linux/*.tar.gz
+          artifacts/artifacts-Windows/*.tar.gz
+          artifacts/artifacts-macOS/*.tar.gz
