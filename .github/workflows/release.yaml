@@ -45,8 +45,8 @@ jobs:
         id: compress
         with:
           command: c
-          cwd: bin
-          files: "echo-service*"
+          #cwd: bin
+          files: bin
           outPath: echo-service-$RUNNER_OS.tar.gz
 
       - name: Upload Distribution
