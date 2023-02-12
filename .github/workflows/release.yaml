@@ -7,7 +7,7 @@ on:
         description: "Release version"
         required: true
   push:
-    branches: [ "releaseTest" ]
+    branches: [ "workflow_tests" ]
 
 jobs:
   build:
@@ -48,3 +48,15 @@ jobs:
         with:
           name: artifacts-${{ runner.os }}
           path: "*.tar.gz"
+
+  release:
+    needs: [ build ]
+    name: Create Release
+    steps:
+    - name: Download
+      uses: actions/download-artifact@v3
+      with:
+        path: artifacts
+
+    - name: Infos
+      run: ls -al artifacts
