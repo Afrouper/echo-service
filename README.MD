@@ -10,7 +10,8 @@
 
 Plain and very simple echo service usefully for testing infrastructure components.
 
-A docker image is available on [Docker Hub](https://hub.docker.com/r/afrouper/echo-service).
+A docker image is available on [Docker Hub](https://hub.docker.com/r/afrouper/echo-service) and
+[ghcr.io](https://github.com/Afrouper/echo-service/pkgs/container/echo-service).
 
 ## Build & Test
 Install the latest go version: https://go.dev/doc/install
