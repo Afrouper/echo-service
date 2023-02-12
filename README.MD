@@ -1,7 +1,7 @@
 # Simple echo service
 
-[![Build an Test](https://github.com/Afrouper/echo-service/actions/workflows/build.yml/badge.svg)](https://github.com/Afrouper/echo-service/actions/workflows/build.yml)
-[![Build release](https://github.com/Afrouper/echo-service/actions/workflows/release.yaml/badge.svg)](https://github.com/Afrouper/echo-service/actions/workflows/release.yaml)
+[![Build and Test](https://github.com/Afrouper/echo-service/actions/workflows/build.yml/badge.svg)](https://github.com/Afrouper/echo-service/actions/workflows/build.yml)
+[![Build Release](https://github.com/Afrouper/echo-service/actions/workflows/release.yaml/badge.svg)](https://github.com/Afrouper/echo-service/actions/workflows/release.yaml)
 [![](https://badgen.net/github/release/Afrouper/echo-service?icon=github)](https://github.com/Afrouper/echo-service/releases/latest)
 ![](https://badgen.net/github/releases/Afrouper/echo-service)
 ![](https://badgen.net/github/open-issues/Afrouper/echo-service)
