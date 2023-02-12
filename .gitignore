@@ -186,4 +186,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# Binary
+echo-service
+
 # End of https://www.toptal.com/developers/gitignore/api/go,macos,windows,linux,intellij+all
