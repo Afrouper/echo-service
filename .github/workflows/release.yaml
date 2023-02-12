@@ -39,7 +39,7 @@ jobs:
         id: compress
         with:
           command: c
-          cwd: ./bin
+          cwd: bin
           files: "*"
           outPath: echo-service-$RUNNER_OS.tar.gz
 
