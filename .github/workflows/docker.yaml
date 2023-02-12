@@ -5,6 +5,7 @@ on:
     # Pattern matched against refs/tags
     tags:
       - '*'
+    branches: [ "workflow_tests" ]
 
 jobs:
   docker:
