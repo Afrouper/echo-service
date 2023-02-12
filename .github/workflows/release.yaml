@@ -1,13 +1,9 @@
 name: Build release
 
 on:
-  workflow_dispatch:
-    inputs:
-      version:
-        description: "Release version"
-        required: true
   push:
-    branches: [ "workflow_tests" ]
+    tags:
+      - "v*.*.*"
 
 jobs:
   build:
@@ -16,7 +12,8 @@ jobs:
     strategy:
       matrix:
         version: [ 1.19 ]
-        os: [ macos-latest, windows-latest, ubuntu-latest]
+        #os: [ macos-latest, windows-latest, ubuntu-latest]
+        os: [ macos-latest, ubuntu-latest]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
