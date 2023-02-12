@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	port, found := os.LookupEnv("echo-service.port")
+	port, found := os.LookupEnv("echo_service_port")
 	if !found {
 		port = "8080"
 	}
@@ -15,5 +15,8 @@ func main() {
 	if err != nil {
 		log.Fatalf("Cannot start echo-service: %v", err)
 	}
-	StartEchoService(p)
+	err = StartEchoService(p)
+	if err != nil {
+		log.Fatalf("Cannot start echo-service: %v", err)
+	}
 }

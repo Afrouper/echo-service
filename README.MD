@@ -1,15 +1,15 @@
 # Simple echo service
 
-[![Build and Test](https://github.com/Afrouper/echo-service/actions/workflows/build.yml/badge.svg)](https://github.com/Afrouper/echo-service/actions/workflows/build.yml)
-[![Build Release](https://github.com/Afrouper/echo-service/actions/workflows/release.yaml/badge.svg)](https://github.com/Afrouper/echo-service/actions/workflows/release.yaml)
-[![](https://badgen.net/github/release/Afrouper/echo-service?icon=github)](https://github.com/Afrouper/echo-service/releases/latest)
-![](https://badgen.net/github/releases/Afrouper/echo-service)
-![](https://badgen.net/github/open-issues/Afrouper/echo-service)
-![](https://badgen.net/github/license/Afrouper/echo-service)
+[![Build and Test](https://github.com/afrouper/echo-service/actions/workflows/build.yml/badge.svg)](https://github.com/afrouper/echo-service/actions/workflows/build.yml)
+[![Build Release](https://github.com/afrouper/echo-service/actions/workflows/release.yaml/badge.svg)](https://github.com/afrouper/echo-service/actions/workflows/release.yaml)
+[![](https://badgen.net/github/release/afrouper/echo-service?icon=github)](https://github.com/afrouper/echo-service/releases/latest)
+![](https://badgen.net/github/releases/afrouper/echo-service)
+![](https://badgen.net/github/open-issues/afrouper/echo-service)
+[![](https://badgen.net/github/license/afrouper/echo-service)](https://raw.githubusercontent.com/afrouper/echo-service/main/LICENSE)
 
-Plain and very simple echo service usefully for testing infrastructure  components.
+Plain and very simple echo service usefully for testing infrastructure components.
 
-A docker image is avalable on [Docker Hub](https://hub.docker.com/repository/docker/afrouper/echo-service)
+A docker image is available on [Docker Hub](https://hub.docker.com/r/afrouper/echo-service).
 
 ## Build & Test
 Install the latest go version: https://go.dev/doc/install
@@ -17,8 +17,10 @@ Install the latest go version: https://go.dev/doc/install
 Compilation can be done via `go build -v ./...`, Tests via `go test -v ./...`
 
 ## Usage
-The binary can be started via `./echo-service`. It listens to port 8080. If called with a Chrome browser this is
-the output: 
+The binary can be started via `./echo-service`. By default, it listens on port 8080. You can change the listen port
+by setting the environment variable `echo_service_port`
+
+If called with a Chrome browser this is  the output: 
 ```json
 {
   "http": {
