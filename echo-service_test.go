@@ -67,6 +67,59 @@ func TestEchoServicePostWithText(t *testing.T) {
 	}
 }
 
+func TestJWT(t *testing.T) {
+	r := httptest.NewRequest(http.MethodGet, "https://funkyTestServer.org/foo/bar?query1=key1", nil)
+	w := httptest.NewRecorder()
+	r.Header.Set("Authorization", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJjdXN0b21DbGFpbSI6IkZvbyJ9.WSt10RZi2AGyQfYsR2AyeH6yUwG89hWsX-cZyVNYMTU")
+	handleJwtReply(t, w, r)
+
+	r = httptest.NewRequest(http.MethodGet, "https://funkyTestServer.org/foo/bar?query1=key1", nil)
+	w = httptest.NewRecorder()
+	r.Header.Set("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJjdXN0b21DbGFpbSI6IkZvbyJ9.WSt10RZi2AGyQfYsR2AyeH6yUwG89hWsX-cZyVNYMTU")
+	handleJwtReply(t, w, r)
+}
+
+func handleJwtReply(t *testing.T, w *httptest.ResponseRecorder, r *http.Request) {
+	handleRequest(w, r)
+	res := w.Result()
+
+	contentType := res.Header.Get("Content-Type")
+	if !strings.EqualFold(contentType, "application/json") {
+		t.Fatalf("invalid Contant-Type: %v", contentType)
+	}
+
+	var responseJson map[string]interface{}
+	err := json.NewDecoder(res.Body).Decode(&responseJson)
+	if err != nil {
+		t.Fatalf("JWT error %v", err)
+	}
+
+	authorization := responseJson["authorization"].(map[string]interface{})
+	if authorization == nil {
+		t.Fatalf("Authorization is nil.")
+	}
+	payload := authorization["payload"].(map[string]interface{})
+	header := authorization["header"].(map[string]interface{})
+
+	if payload == nil {
+		t.Fatalf("Payload is nil.")
+	}
+	if header == nil {
+		t.Fatalf("Header is nil.")
+	}
+
+	if !strings.EqualFold("1234567890", payload["sub"].(string)) {
+		t.Fatalf("Claim 'sub' has wrong content %s", payload["sub"].(string))
+	}
+	if !strings.EqualFold("Foo", payload["customClaim"].(string)) {
+		t.Fatalf("Claim 'customClaim' has wrong content %s", payload["customClaim"].(string))
+	}
+
+	if !strings.EqualFold("HS256", header["alg"].(string)) {
+		t.Fatalf("Claim 'alg' has wrong content %s", header["alg"].(string))
+	}
+}
+
 func doTestRequest(method, target string, body io.Reader, ct string) (map[string]interface{}, error) {
 	r := httptest.NewRequest(method, target, body)
 	w := httptest.NewRecorder()
