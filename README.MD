@@ -17,14 +17,29 @@ A docker image is available on [Docker Hub](https://hub.docker.com/r/afrouper/ec
 ## Build & Test
 Install the latest go version: https://go.dev/doc/install
 
-Compilation can be done via `go build -v ./...`, Tests via `go test -v ./...`
+* Resolve dependencies: `go get -d -v`
+* Build: `go build -v ./...`
+* Test: `go test -v ./...`
+
+## Security
+The provided docker images are small and secure. The latest stable go version will be used to compile and link to
+a static binary.
+The binary is started as non root User. The User has no shell, no home directory and no ability to login.
+The smallest possible image is used: `FROM scratch`
 
 ## Usage
 The binary can be started via `./echo-service`. By default, it listens on port 8080. You can change the listen port
 by setting the environment variable `echo_service_port`
 
-If using a JWT Bearer token is send the token will be decoded (without verifying!) and send back as JSON.
+### JWT Bearer Token
+If using a JWT Bearer token it will be decoded (without verifying!) and send back as JSON.
 
+### Timeout simulation
+You can specify time periods the echo-service will sleep to simulate timeout handling in e.g. a gateway.
+All durations can be used with a time unit. Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h".
+The duration can be send as Query Param (`timeout=30s`) or HTTP Header (`X-Timeout: 5000ms`)
+
+## Output
 If called with a Chrome browser this is  the output: 
 ```json
 {

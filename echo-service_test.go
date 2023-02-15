@@ -9,6 +9,7 @@ import (
 	"net/http/httptest"
 	"strings"
 	"testing"
+	"time"
 )
 
 func TestEchoServiceGet(t *testing.T) {
@@ -117,6 +118,31 @@ func handleJwtReply(t *testing.T, w *httptest.ResponseRecorder, r *http.Request)
 
 	if !strings.EqualFold("HS256", header["alg"].(string)) {
 		t.Fatalf("Claim 'alg' has wrong content %s", header["alg"].(string))
+	}
+}
+
+func TestTimeout(t *testing.T) {
+	r := httptest.NewRequest(http.MethodGet, "https://funkyTestServer.org/foo/bar?timeout=2s", nil)
+	w := httptest.NewRecorder()
+
+	start := time.Now()
+	handleRequest(w, r)
+	duration := time.Now().Sub(start)
+
+	if duration < 2*time.Second {
+		t.Fatalf("Wrong timeout (%v) while calling with Query.", duration)
+	}
+
+	r = httptest.NewRequest(http.MethodGet, "https://funkyTestServer.org/foo/bar", nil)
+	r.Header.Set("X-Timeout", "2000ms")
+	w = httptest.NewRecorder()
+
+	start = time.Now()
+	handleRequest(w, r)
+	duration = time.Now().Sub(start)
+
+	if duration < 2*time.Second {
+		t.Fatalf("Wrong timeout (%v) while calling with Query.", duration)
 	}
 }
 
