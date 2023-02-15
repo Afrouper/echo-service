@@ -88,7 +88,7 @@ func handleTimeout(req *http.Request) {
 	if timeoutValue != "" {
 		duration, err := time.ParseDuration(timeoutValue)
 		if err == nil {
-			log.Printf("Cannot parse duration duration from %s: %v", timeoutValue, err)
+			log.Printf("Cannot parse duration. Check format! %v", err)
 		}
 		log.Printf("Sleep for %v.", duration)
 		time.Sleep(duration)
