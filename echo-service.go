@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
+	"time"
 )
 
 type Response struct {
@@ -67,12 +68,30 @@ func handleRequest(w http.ResponseWriter, req *http.Request) {
 	if authHeader != "" {
 		handleJWT(authHeader, &response.Authorization)
 	}
-
 	handleBody(req, &response)
+
+	handleTimeout(req)
+
 	w.Header().Set("Content-Type", "application/json")
 	err := json.NewEncoder(w).Encode(response)
 	if err != nil {
 		log.Printf("Unable to send or decode JSON: %v", err)
+	}
+}
+
+func handleTimeout(req *http.Request) {
+	timeoutValue := req.URL.Query().Get("timeout")
+	if timeoutValue == "" {
+		timeoutValue = req.Header.Get("X-Timeout")
+	}
+
+	if timeoutValue != "" {
+		duration, err := time.ParseDuration(timeoutValue)
+		if err == nil {
+			log.Printf("Cannot parse duration duration from %s: %v", timeoutValue, err)
+		}
+		log.Printf("Sleep for %v.", duration)
+		time.Sleep(duration)
 	}
 }
 
