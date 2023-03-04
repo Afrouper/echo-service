@@ -50,57 +50,55 @@ dockers:
     goos: linux
     goarch: amd64
     image_templates:
-      - afrouper/{{ .ProjectName }}:{{ .Version }}-amd64
-#      - ghcr.io/afrouper/{{ .ProjectName }}:{{ .Version }}-amd64
-#      - docker.io/afrouper/{{ .ProjectName }}:{{ .Version }}-amd64
-#      - ghcr.io/afrouper/{{ .ProjectName }}:latest-amd64
-#      - docker.io/afrouper/{{ .ProjectName }}:latest-amd64
+      - ghcr.io/afrouper/{{ .ProjectName }}:{{ .Version }}-amd64
+      - docker.io/afrouper/{{ .ProjectName }}:{{ .Version }}-amd64
+      - ghcr.io/afrouper/{{ .ProjectName }}:latest-amd64
+      - docker.io/afrouper/{{ .ProjectName }}:latest-amd64
     build_flag_templates:
       - "--platform=linux/amd64"
-      - --label=org.opencontainers.image.created={{.Date}}
-      - --label=org.opencontainers.image.title={{.ProjectName}}
-      - --label=org.opencontainers.image.revision={{.FullCommit}}
-      - --label=org.opencontainers.image.version={{.Version}}
-      - --label=org.opencontainers.image.url=https://github.com/afrouper/{{ .ProjectName }}
-      - --label=org.opencontainers.image.source=https://github.com/afrouper/{{ .ProjectName }}
-      - --label=org.opencontainers.image.licenses=Apache-2.0
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.title={{.ProjectName}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
+      - "--label=org.opencontainers.image.url=https://github.com/afrouper/{{ .ProjectName }}"
+      - "--label=org.opencontainers.image.source=https://github.com/afrouper/{{ .ProjectName }}"
+      - "--label=org.opencontainers.image.licenses=Apache-2.0"
 
   - use: buildx
     goos: linux
     goarch: arm64
     image_templates:
-      - afrouper/{{ .ProjectName }}:{{ .Version }}-arm64
-#      - ghcr.io/afrouper/{{ .ProjectName }}:{{ .Version }}-arm64
-#      - ghcr.io/afrouper/{{ .ProjectName }}:latest-arm64
-#      - docker.io/afrouper/{{ .ProjectName }}:{{ .Version }}-arm64
-#      - docker.io/afrouper/{{ .ProjectName }}:latest-arm64
+      - ghcr.io/afrouper/{{ .ProjectName }}:{{ .Version }}-arm64
+      - ghcr.io/afrouper/{{ .ProjectName }}:latest-arm64
+      - docker.io/afrouper/{{ .ProjectName }}:{{ .Version }}-arm64
+      - docker.io/afrouper/{{ .ProjectName }}:latest-arm64
     build_flag_templates:
       - "--platform=linux/arm64"
-      - --label=org.opencontainers.image.created={{.Date}}
-      - --label=org.opencontainers.image.title={{.ProjectName}}
-      - --label=org.opencontainers.image.revision={{.FullCommit}}
-      - --label=org.opencontainers.image.version={{.Version}}
-      - --label=org.opencontainers.image.url=https://github.com/afrouper/{{ .ProjectName }}
-      - --label=org.opencontainers.image.source=https://github.com/afrouper/{{ .ProjectName }}
-      - --label=org.opencontainers.image.licenses=Apache-2.0
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.title={{.ProjectName}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
+      - "--label=org.opencontainers.image.url=https://github.com/afrouper/{{ .ProjectName }}"
+      - "--label=org.opencontainers.image.source=https://github.com/afrouper/{{ .ProjectName }}"
+      - "--label=org.opencontainers.image.licenses=Apache-2.0"
 
 docker_manifests:
   - name_template: ghcr.io/afrouper/{{ .ProjectName }}:{{ .Version }}
     image_templates:
-      - afrouper/{{ .ProjectName }}:{{ .Version }}-amd64
-      - afrouper/{{ .ProjectName }}:{{ .Version }}-arm64
+      - ghcr.io/afrouper/{{ .ProjectName }}:{{ .Version }}-amd64
+      - ghcr.io/afrouper/{{ .ProjectName }}:{{ .Version }}-arm64
 
-#  - name_template: ghcr.io/afrouper/{{ .ProjectName }}:latest
-#    image_templates:
-#      - ghcr.io/afrouper/{{ .ProjectName }}:latest-amd64
-#      - ghcr.io/afrouper/{{ .ProjectName }}:latest-arm64
+  - name_template: ghcr.io/afrouper/{{ .ProjectName }}:latest
+    image_templates:
+      - ghcr.io/afrouper/{{ .ProjectName }}:latest-amd64
+      - ghcr.io/afrouper/{{ .ProjectName }}:latest-arm64
 
-#  - name_template: docker.io/afrouper/{{ .ProjectName }}:{{ .Version }}
-#    image_templates:
-#      - docker.io/afrouper/{{ .ProjectName }}:{{ .Version }}-amd64
-#      - docker.io/afrouper/{{ .ProjectName }}:{{ .Version }}-arm64
+  - name_template: docker.io/afrouper/{{ .ProjectName }}:{{ .Version }}
+    image_templates:
+      - docker.io/afrouper/{{ .ProjectName }}:{{ .Version }}-amd64
+      - docker.io/afrouper/{{ .ProjectName }}:{{ .Version }}-arm64
 
-#  - name_template: docker.io/afrouper/{{ .ProjectName }}:latest
-#    image_templates:
-#      - docker.io/afrouper/{{ .ProjectName }}:latest-amd64
-#      - docker.io/afrouper/{{ .ProjectName }}:latest-arm64
+  - name_template: docker.io/afrouper/{{ .ProjectName }}:latest
+    image_templates:
+      - docker.io/afrouper/{{ .ProjectName }}:latest-amd64
+      - docker.io/afrouper/{{ .ProjectName }}:latest-arm64
