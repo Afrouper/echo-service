@@ -56,7 +56,7 @@ dockers:
 #      - ghcr.io/afrouper/{{ .ProjectName }}:latest-amd64
 #      - docker.io/afrouper/{{ .ProjectName }}:latest-amd64
     build_flag_templates:
-      - --platform=linux/amd64"
+      - "--platform=linux/amd64"
       - --label=org.opencontainers.image.created={{.Date}}
       - --label=org.opencontainers.image.title={{.ProjectName}}
       - --label=org.opencontainers.image.revision={{.FullCommit}}
@@ -75,7 +75,7 @@ dockers:
 #      - docker.io/afrouper/{{ .ProjectName }}:{{ .Version }}-arm64
 #      - docker.io/afrouper/{{ .ProjectName }}:latest-arm64
     build_flag_templates:
-      - --platform=linux/arm64
+      - "--platform=linux/arm64"
       - --label=org.opencontainers.image.created={{.Date}}
       - --label=org.opencontainers.image.title={{.ProjectName}}
       - --label=org.opencontainers.image.revision={{.FullCommit}}
