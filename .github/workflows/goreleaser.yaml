@@ -2,8 +2,10 @@ name: goreleaser
 
 on:
   push:
-    tags:
-      - "v*.*.*"
+#    tags:
+#      - "v*.*.*"
+    branches:
+      - goreleaser
 
 permissions:
   contents: write
