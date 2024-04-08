@@ -31,7 +31,7 @@ jobs:
         run: go test -v ./...
 
       - name: Compress
-        uses: a7ul/tar-action@v1.1.3
+        uses: a7ul/tar-action@v1.2.0
         id: compress
         with:
           command: c
