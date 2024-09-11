@@ -29,7 +29,9 @@ The smallest possible image is used: `FROM scratch`
 
 ## Usage
 The binary can be started via `./echo-service`. By default, it listens on port 8080. You can change the listen port
-by setting the environment variable `echo_service_port`
+by setting the environment variable `echo_service_port`.
+
+When setting the environment variable `instance_name` a custom instance name will be send with each response.
 
 ### JWT Bearer Token
 If using a JWT Bearer token it will be decoded (without verifying!) and send back as JSON.
