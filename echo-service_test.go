@@ -28,6 +28,10 @@ func TestEchoServiceGet(t *testing.T) {
 	if !strings.EqualFold(httpJso["method"].(string), "GET") {
 		t.Fail()
 	}
+
+	if !strings.EqualFold(responseJson["instanceName"].(string), "internalTest") {
+		t.Fail()
+	}
 }
 
 func TestEchoServicePostWithJson(t *testing.T) {
@@ -54,6 +58,9 @@ func TestEchoServicePostWithJson(t *testing.T) {
 	if 42 != body["id"].(float64) {
 		t.Error("Id not expected")
 	}
+	if !strings.EqualFold(responseJson["instanceName"].(string), "internalTest") {
+		t.Fail()
+	}
 }
 
 func TestEchoServicePostWithText(t *testing.T) {
@@ -65,6 +72,9 @@ func TestEchoServicePostWithText(t *testing.T) {
 	requestJso := responseJson["request"].(map[string]interface{})
 	if !strings.EqualFold("Hello Echo", requestJso["body"].(string)) {
 		t.Error("Wrong body")
+	}
+	if !strings.EqualFold(responseJson["instanceName"].(string), "internalTest") {
+		t.Fail()
 	}
 }
 
@@ -147,6 +157,7 @@ func TestTimeout(t *testing.T) {
 }
 
 func doTestRequest(method, target string, body io.Reader, ct string) (map[string]interface{}, error) {
+	InstanceName = "internalTest"
 	r := httptest.NewRequest(method, target, body)
 	w := httptest.NewRecorder()
 	if ct != "" {
