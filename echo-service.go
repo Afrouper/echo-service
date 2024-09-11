@@ -17,6 +17,7 @@ type Response struct {
 	RemoteAddress string              `json:"remoteAddress,omitempty"`
 	Request       Request             `json:"request,omitempty"`
 	Authorization JwtPayload          `json:"authorization,omitempty"`
+	InstanceName  string              `json:"instanceName,omitempty"`
 }
 
 type Http struct {
@@ -38,8 +39,11 @@ type JwtPayload struct {
 	Payload interface{}            `json:"payload"`
 }
 
-func StartEchoService(port int) error {
-	log.Printf("Starting echo-service at port %v\n", port)
+var InstanceName string
+
+func StartEchoService(port int, instanceName string) error {
+	log.Printf("Starting echo-service at port %v and instance name %v\n", port, instanceName)
+	InstanceName = instanceName
 	http.HandleFunc("/", handleRequest)
 	err := http.ListenAndServe(":"+strconv.Itoa(port), nil)
 	if err != nil {
@@ -63,6 +67,8 @@ func handleRequest(w http.ResponseWriter, req *http.Request) {
 	response.RemoteAddress = req.RemoteAddr
 
 	response.Header = req.Header
+
+	response.InstanceName = InstanceName
 
 	authHeader := req.Header.Get("Authorization")
 	if authHeader != "" {
