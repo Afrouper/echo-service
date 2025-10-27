@@ -40,7 +40,7 @@ jobs:
           outPath: echo-service-${{ runner.os }}.tar.gz
 
       - name: Upload Distribution
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: artifacts-${{ runner.os }}
           path: "*.tar.gz"
